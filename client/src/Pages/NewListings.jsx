@@ -12,7 +12,7 @@ const NewListings = ({addNewListing}) => {
  country:""
   });
 
-  const URL = "http://localhost:3000/api/auth/listing";
+  const URL = "https://wanderlust-project-server.onrender.com/api/auth/listing";
 
   const handleInput = (e) => {
     console.log(e);
