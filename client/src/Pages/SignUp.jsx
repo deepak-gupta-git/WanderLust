@@ -13,7 +13,7 @@ const signup = () => {
     const {storeTokenInLS} = useAuth();
 
 
-    const userURL = "http://localhost:3000/api/auth/signup";
+    const userURL = "https://wanderlust-project-server.onrender.com/api/auth/signup";
 
     const handleInput = (e) =>{
         console.log(e);
