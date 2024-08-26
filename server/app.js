@@ -23,9 +23,9 @@ app.get("/", (req, res) => {
     res.status(200).send("Hello From root")
 })
 
+app.use("/api/auth", router);
+app.use("/api/listings", listingRouter);
 
-app.use("/api/auth", router)
-app.use("/api/auth", listingRouter)
 
 ConnectDb().then(() => {
     app.listen(PORT, () => {
