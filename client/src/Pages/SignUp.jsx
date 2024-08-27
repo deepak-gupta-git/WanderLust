@@ -13,7 +13,7 @@ const signup = () => {
     const {storeTokenInLS} = useAuth();
 
 
-    const userURL = "http://localhost:3000";
+    const userURL = "https://wanderlust-project-server.onrender.com";
 
  
 
