@@ -25,33 +25,9 @@ export const AuthProvider = ({ children }) => {
 
   // JWT AUTHENTICATION - to get the currently loggedIN user data
 
-  const userAuthentication = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(`${API}/api/auth/user`, {
-        method: "GET",
-        headers: {
-          Authorization: authorizationToken,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("user data ", data.userData);
-        setUser(data.userData);
-        setIsLoading(false);
-      } else {
-        console.error("Error fetching user data");
-        setIsLoading(false);
-      }
-    } catch (error) {
-      console.error("Error fetching user data");
-    }
-  };
-
 
   useEffect(() => {
-    userAuthentication();
+    // userAuthentication();
   }, []);
 
 
