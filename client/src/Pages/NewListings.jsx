@@ -12,7 +12,7 @@ const NewListings = ({addNewListing}) => {
  country:""
   });
 
-  const URL = "https://wanderlust-project-server.onrender.com";
+  const URL = "http://localhost:3000";
 
 
 
