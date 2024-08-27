@@ -13,7 +13,9 @@ const signup = () => {
     const {storeTokenInLS} = useAuth();
 
 
-    const userURL = "http://localhost:3000/api/auth/signup";
+    const userURL = "https://wanderlust-project-server.onrender.com";
+
+ 
 
     const handleInput = (e) =>{
         console.log(e);
@@ -33,7 +35,7 @@ const signup = () => {
         console.log(user);
 
         try {
-        const response = await fetch(userURL , {
+        const response = await fetch(`${userURL}/api/auth/signup` , {
             method : "POST",
             headers: {
                 "Content-Type" : "application/json"

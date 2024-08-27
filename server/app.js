@@ -13,7 +13,7 @@ const corsOptions = {
     origin:"http://localhost:5173" ,
     // origin:"http://localhost:3000", 
     methods:"GET, POST, PUT , PATCH , DELETE,HEAD",
-    Credential:true
+   credentials: true
 };
 
 app.use(cors(corsOptions));
@@ -23,9 +23,9 @@ app.get("/", (req, res) => {
     res.status(200).send("Hello From root")
 })
 
+app.use("/api/auth", router);
+app.use("/api/listings", listingRouter);
 
-app.use("/api/auth", router)
-app.use("/api/auth", listingRouter)
 
 ConnectDb().then(() => {
     app.listen(PORT, () => {

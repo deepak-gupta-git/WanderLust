@@ -15,7 +15,7 @@ const login = () => {
   // const navigate = useNavigate();
   // const { storeTokenInLS, API } = useAuth();
 
-  const LOGINURL = "http://localhost:3000/api/auth/login"
+  const LOGINURL = "https://wanderlust-project-server.onrender.com";
   
 
   const handleInput = (e) => {
@@ -35,7 +35,7 @@ const login = () => {
     console.log(user)
     e.preventDefault();
     try {
-      const response = await fetch(LOGINURL, {
+      const response = await fetch(`${LOGINURL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

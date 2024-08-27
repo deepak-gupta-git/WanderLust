@@ -12,7 +12,9 @@ const NewListings = ({addNewListing}) => {
  country:""
   });
 
-  const URL = "http://localhost:3000/api/auth/listing";
+  const URL = "https://wanderlust-project-server.onrender.com";
+
+
 
   const handleInput = (e) => {
     console.log(e);
@@ -32,7 +34,7 @@ const NewListings = ({addNewListing}) => {
     e.preventDefault();
     console.log(user);
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(`${URL}/api/auth/listing`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
