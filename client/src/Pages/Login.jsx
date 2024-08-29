@@ -15,7 +15,11 @@ const login = () => {
   // const navigate = useNavigate();
   // const { storeTokenInLS, API } = useAuth();
 
+<<<<<<< HEAD
   const LOGINURL = "http://localhost:3000";
+=======
+  const LOGINURL = "https://wanderlust-project-server.onrender.com"
+>>>>>>> 1527397c3180a7cbf44b07a3aa708089ae98c2d0
   
 
   const handleInput = (e) => {
