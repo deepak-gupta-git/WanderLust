@@ -1,10 +1,12 @@
 import React from 'react';
 import Listings from './Listings';
+import Filters from './Filters';
 
 const Home = ({ listings }) => {
   return (
     <>
-      <Listings listings={listings} />
+      <Filters/>
+      {/* <Listings listings={listings}/> */}
     </>
   );
 };

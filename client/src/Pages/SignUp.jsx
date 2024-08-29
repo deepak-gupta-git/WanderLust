@@ -13,9 +13,7 @@ const signup = () => {
     const {storeTokenInLS} = useAuth();
 
 
-    const userURL = "https://wanderlust-project-server.onrender.com";
-
- 
+    const userURL = "http://localhost:3000";
 
     const handleInput = (e) =>{
         console.log(e);
@@ -46,7 +44,7 @@ const signup = () => {
         const res_data = await response.json();
 
         if(response.ok) {
-            navigate("/listings")
+            navigate("/")
             toast.success("Register succesfully")
             setUser ({ username : "",email : "",password : "" });
             storeTokenInLS(res_data.token);

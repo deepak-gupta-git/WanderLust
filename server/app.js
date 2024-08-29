@@ -10,7 +10,7 @@ const cors = require("cors")
 const PORT = process.env.PORT;
 
 const corsOptions = {
-    origin:"http://localhost:5173" ,
+    origin:[ "http://localhost:5173" ,] ,
     // origin:"http://localhost:3000", 
     methods:"GET, POST, PUT , PATCH , DELETE,HEAD",
    credentials: true
@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/auth", router);
-app.use("/api/listings", listingRouter);
+app.use("/api/auth", listingRouter);
 
 
 ConnectDb().then(() => {

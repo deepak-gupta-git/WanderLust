@@ -12,9 +12,7 @@ const NewListings = ({addNewListing}) => {
  country:""
   });
 
-  const URL = "https://wanderlust-project-server.onrender.com";
-
-
+  const URL = "http://localhost:3000";
 
   const handleInput = (e) => {
     console.log(e);
@@ -47,7 +45,7 @@ const NewListings = ({addNewListing}) => {
       // console.log(res_data);
 
       if(response.ok) {
-        navigate("/listings")
+        navigate("/")
         toast.success("Listing Created SuccesFully")
 
         const newListing = {...user};

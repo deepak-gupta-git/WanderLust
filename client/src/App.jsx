@@ -21,12 +21,13 @@ const App = () => {
     setListings([...listings, newListing]);
   };
 
+
   return (
     <AuthProvider>
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Home listings={listings}/>} />
+        <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/newListings' element={<NewListings addNewListing={addNewListing} />} />
