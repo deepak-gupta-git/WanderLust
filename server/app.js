@@ -10,7 +10,7 @@ const cors = require("cors")
 const PORT = process.env.PORT;
 
 const corsOptions = {
-    origin:"http://localhost:5173",
+    origin:"http://wander-lust-frontend.vercel.app",
     // origin:"http://localhost:3000", 
     methods:"GET, POST, PUT , PATCH , DELETE,HEAD",
    credentials: true
