@@ -12,7 +12,7 @@ const NewListings = ({addNewListing}) => {
  country:""
   });
 
-  const URL = "http://wander-lust-theta.vercel.app";
+  const URL = "https://wander-lust-server.vercel.app";
 
   const handleInput = (e) => {
     console.log(e);
