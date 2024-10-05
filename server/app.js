@@ -7,7 +7,7 @@ const listingRouter = require("../server/Router/newListings-router");
 const cors = require("cors");
 
 const corsOptions = {
-    origin: "http://wander-lust-frontend.vercel.app",
+    origin: "https://wander-lust-frontend.vercel.app",
     methods: "GET, POST, PUT, PATCH, DELETE, HEAD",
     credentials: true
 };
