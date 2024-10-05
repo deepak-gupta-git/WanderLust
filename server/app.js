@@ -2,18 +2,23 @@ const express = require("express");
 require("dotenv").config();
 const app = express();
 const router = require("../server/Router/auth-router");
-const ConnectDb = require("../server/Utils/utils");
 const listingRouter = require("../server/Router/newListings-router");
 const cors = require("cors");
 
 const corsOptions = {
-    origin: "https://wander-lust-frontend.vercel.app",
+    origin: "https://wander-lust-frontend.vercel.app", // Confirm this matches your frontend URL
     methods: "GET, POST, PUT, PATCH, DELETE, HEAD",
     credentials: true
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
+// Log incoming requests
+app.use((req, res, next) => {
+    console.log(`Incoming request: ${req.method} ${req.url}`);
+    next();
+});
 
 app.get("/", (req, res) => {
     res.status(200).send("Hello From root");
@@ -22,7 +27,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", router);
 app.use("/api/listings", listingRouter);
 
-
+// Database connection
 ConnectDb()
     .then(() => {
         console.log("Database connected successfully");
@@ -30,6 +35,5 @@ ConnectDb()
     .catch((error) => {
         console.error("Database connection error:", error.message);
     });
-
 
 module.exports = app;
