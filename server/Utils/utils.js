@@ -4,15 +4,10 @@ const URI = process.env.URI;
 
 const ConnectDb = async () => {
     try {
-      
-        await mongoose.connect(URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(URI); 
         console.log("DB Connected successfully");
     } catch (error) {
         console.error("Error connecting to the database:", error.message);
-       
         throw error;
     }
 };
