@@ -1,34 +1,35 @@
-const express = require("express")
+const express = require("express");
 require("dotenv").config();
 const app = express();
-const router = require("../server/Router/auth-router")
-const ConnectDb = require("../server/Utils/utils")
-const listingRouter = require("../server/Router/newListings-router")
-const cors = require("cors") 
-
-
-const PORT = process.env.PORT;
+const router = require("../server/Router/auth-router");
+const ConnectDb = require("../server/Utils/utils");
+const listingRouter = require("../server/Router/newListings-router");
+const cors = require("cors");
 
 const corsOptions = {
-    origin:"http://wander-lust-frontend.vercel.app",
-    // origin:"http://localhost:3000", 
-    methods:"GET, POST, PUT , PATCH , DELETE,HEAD",
-   credentials: true
+    origin: "http://wander-lust-frontend.vercel.app",
+    methods: "GET, POST, PUT, PATCH, DELETE, HEAD",
+    credentials: true
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.status(200).send("Hello From root")
-})
+    res.status(200).send("Hello From root");
+});
 
 app.use("/api/auth", router);
-app.use("/api/auth", listingRouter);
+app.use("/api/listings", listingRouter);
 
 
-ConnectDb().then(() => {
-    app.listen(PORT, () => {
-        console.log("App is listening" , PORT)
+ConnectDb()
+    .then(() => {
+        console.log("Database connected successfully");
     })
-});
+    .catch((error) => {
+        console.error("Database connection error:", error.message);
+    });
+
+
+module.exports = app;
