@@ -6,19 +6,13 @@ const listingRouter = require("../server/Router/newListings-router");
 const cors = require("cors");
 
 const corsOptions = {
-    origin: "https://wander-lust-frontend.vercel.app", 
+    origin: "https://wander-lust-frontend.vercel.app", // Make sure this is correct
     methods: "GET, POST, PUT, PATCH, DELETE, HEAD",
-    credentials: true
+    credentials: true,
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); // CORS middleware should be applied here
 app.use(express.json());
-
-// Log incoming requests
-app.use((req, res, next) => {
-    console.log(Incoming request: ${req.method} ${req.url});
-    next();
-});
 
 app.get("/", (req, res) => {
     res.status(200).send("Hello From root");
@@ -26,7 +20,6 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", router);
 app.use("/api/listings", listingRouter);
-
 
 ConnectDb()
     .then(() => {
@@ -36,4 +29,4 @@ ConnectDb()
         console.error("Database connection error:", error.message);
     });
 
-module.exports = app;
+module.exports = app;
