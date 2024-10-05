@@ -7,5 +7,16 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.1"
-  }
+  },
+  
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },  "scripts": {
+  "start": "node app.js",
+  "dev": "nodemon app.js"
 }
+
+}
+
+
+
