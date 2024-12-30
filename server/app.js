@@ -8,7 +8,7 @@ const cors = require("cors");
 const Razorpay = require("razorpay");
 
 const corsOptions = {
-    origin: "http://localhost:5173",
+    origin: "https://wander-lust-frontend.vercel.app",
     methods: "GET, POST, PUT, PATCH, DELETE, HEAD",
     credentials: true
 };
