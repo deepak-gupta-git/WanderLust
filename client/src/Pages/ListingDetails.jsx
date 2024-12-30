@@ -67,11 +67,10 @@ const ListingDetails = () => {
                 </NavLink>
 
                 <button 
-                  className="px-6 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition duration-300"
-                >
+                  onClick={onClick}
+                  className="px-6 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition duration-300" >
                   Delete
                 </button>
-
                 <NavLink 
                   to="/book"
                   state={{ price, title, loc, country, image, latitude, longitude }} // Pass location details
