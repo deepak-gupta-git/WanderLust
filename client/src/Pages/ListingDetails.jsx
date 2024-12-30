@@ -77,7 +77,7 @@ const ListingDetails = () => {
                   state={{ price, title, loc, country, image, latitude, longitude }} // Pass location details
                 >
                   <button 
-                     onClick={onClickdelete} 
+   
                     className="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition duration-300">
                     Book
                      
