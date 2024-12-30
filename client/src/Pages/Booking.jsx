@@ -7,7 +7,7 @@ const Booking = () => {
   const location = useLocation();
   const { price } = location.state || {}; 
 
- 
+
   const calculateTotal = (amount) => {
     const gst = 0.18; 
     return amount + amount * gst; 
