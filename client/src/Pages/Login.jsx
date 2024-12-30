@@ -15,7 +15,7 @@ const login = () => {
   // const navigate = useNavigate();
   // const { storeTokenInLS, API } = useAuth();
 
-  const LOGINURL = "http://localhost:3000";
+  const LOGINURL = "https://wander-lust-server.vercel.app";
 
   const handleInput = (e) => {
     let name = e.target.name;
