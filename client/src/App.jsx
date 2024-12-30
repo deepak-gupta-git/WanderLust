@@ -13,6 +13,7 @@ import Error from './Pages/Error';
 import EditListings from './Pages/EditListings';
 import { AuthProvider } from './Store/authStore';
 import { Logout } from './Pages/Logout';
+import Booking from "./Pages/Booking";
 
 const App = () => {
   const [listings, setListings] = useState(Array.isArray(sampleListings) ? sampleListings : []);
@@ -36,6 +37,7 @@ const App = () => {
         <Route path='*' element={<Error />} />
         <Route path='/editListing' element={<EditListings />} />
         <Route path='/logout' element={<Logout />} />
+        <Route path='/book' element={<Booking />} />
       </Routes>
       <Footer />
     </BrowserRouter>
