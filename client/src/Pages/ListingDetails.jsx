@@ -10,6 +10,10 @@ const ListingDetails = () => {
     toast.error("You are not the Owner of this listing");
   };
 
+  const onClickdelete = () => {
+    toast.error("You have to sign first");
+  };
+
   const location = useLocation();
   const { state } = location;
   const { price, description, location: loc, image, title, country, latitude, longitude } = state || {};
@@ -77,7 +81,7 @@ const ListingDetails = () => {
                 >
                   <button className="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition duration-300">
                     Book
-                     onClick={onClick} 
+                     onClick={onClickdelete} 
                   </button>
                 </NavLink>
               </div>
