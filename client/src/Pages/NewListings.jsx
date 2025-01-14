@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import {useNavigate} from "react-router-dom"
 
-const NewListings = ({addNewListing}) => {
+const NewListings = (
+  // {addNewListing}
+) => {
   const [user, setUser] = useState({
   title:"",
   image:"",
   description:"",
   price:"",
   location:"",
- country:""
+  country:""
   });
 
-  const URL = "https://wander-lust-server.vercel.app";
+  const URL = "http://localhost:3000";
 
   const handleInput = (e) => {
     console.log(e);
@@ -32,7 +34,7 @@ const NewListings = ({addNewListing}) => {
     e.preventDefault();
     console.log(user);
     try {
-      const response = await fetch(`${URL}/api/auth/listing`, {
+      const response = await fetch(`${URL}/api/listings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,10 +48,10 @@ const NewListings = ({addNewListing}) => {
 
       if(response.ok) {
         navigate("/")
-        toast.success("Listing Created SuccesFully")
+        toast.success("Listing Created Succesfully!")
 
-        const newListing = {...user};
-        addNewListing(newListing);
+        // const newListing = {...user};
+        // addNewListing(newListing);
 
         setUser ({ 
           title:"",
@@ -61,7 +63,7 @@ const NewListings = ({addNewListing}) => {
         });
 
       } else {
-        toast.error("Listing not Created")
+        toast.error("Listing not Created!")
       }
     } catch (error) {
       console.log(error)
@@ -108,11 +110,13 @@ const NewListings = ({addNewListing}) => {
       </div>
       
       <div class="mb-3">
-        <label for="image" class="form-level">Image</label>
+        <label htmlFor="image" class="form-level">Image</label>
         <input
         name="image"
         placeholder="Enter image link"
-        type="text" class="form-control"  
+        type="text"
+        accept="image/*" 
+        class="form-control"  
         required
         id='image'
         autoComplete='off'
@@ -166,7 +170,7 @@ const NewListings = ({addNewListing}) => {
       />
       <div class="invalid-feedback">Please provide a valid location</div>
       </div>
-      <button class="btn btn-dark add-btn">Add</button>
+      <button class="btn btn-danger add-btn">Add</button>
     </form>
   </div>
 </div>

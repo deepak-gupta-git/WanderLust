@@ -15,7 +15,7 @@ const login = () => {
   // const navigate = useNavigate();
   // const { storeTokenInLS, API } = useAuth();
 
-  const LOGINURL = "https://wander-lust-server.vercel.app";
+  const LOGINURL = "http://localhost:3000";
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -48,12 +48,12 @@ const login = () => {
         // alert("user Successful");
         // storeTokenInLS(res_data.token);
         setUser({ email: "", password: "" });
-        toast.success("Login successful");
-        navigate("/listings");
+        toast.success("Logged in Successfully!");
+        navigate("/");
         storeTokenInLS(res_data.token);
       } else {
         toast.error(
-        "Invalid Email or Password"
+        res_data.extraDetails ? res_data.extraDetails : res_data.message || "Invalid Email or Password"
         );
 
         console.log("Invalid Credentials");
@@ -66,7 +66,7 @@ const login = () => {
   return (
     <div>
       <div class="mt-[10rem]">
-    <h1 class="col-6 offset-3 text-4xl md:text-5xl" >Login on Wanderlust</h1>
+    <h1 class="col-6 offset-3 text-4xl md:text-5xl" >Login on WanderLust</h1>
     <div class="col-6 offset-3 mt-3" >
         <form onSubmit={handleSubmit}>
             <div class="mb-3">

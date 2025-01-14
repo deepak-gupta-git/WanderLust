@@ -13,7 +13,7 @@ const signup = () => {
     const {storeTokenInLS} = useAuth();
 
 
-    const userURL = "https://wander-lust-server.vercel.app";
+    const userURL = "http://localhost:3000";
 
     const handleInput = (e) =>{
         console.log(e);
@@ -45,11 +45,13 @@ const signup = () => {
 
         if(response.ok) {
             navigate("/")
-            toast.success("Register succesfully")
+            toast.success("Register Succesfully!")
             setUser ({ username : "",email : "",password : "" });
             storeTokenInLS(res_data.token);
         } else {
-            toast.error("Registration Failed")
+            toast.error(
+                res_data.extraDetails ? res_data.extraDetails : res_data.message || "Email Already in Use!"
+            )
         }
       
       console.log(response)
@@ -62,7 +64,7 @@ const signup = () => {
     <div>
       
 <div class=" mt-[8rem]">
-    <h1 class="col-6 offset-3 text-3xl " >Signup on Wanderlust</h1>
+    <h1 class="col-6 offset-3 text-3xl " >Signup on WanderLust</h1>
     <div class="col-6 offset-3 mt-3" >
         <form action="/user" method="POST" class="needs-validation" novalidate onSubmit={handleSubmit} >
             <div class="mb-3">

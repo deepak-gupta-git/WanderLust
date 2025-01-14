@@ -2,37 +2,59 @@ import React, { useRef, useEffect } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import mapboxgl from "mapbox-gl";
+import 'mapbox-gl/dist/mapbox-gl.css';
+import MeetYourMentor from './MeetYourMentor';
+import ReviewForm from '../Components/ReviewForm';
+import ReviewList from '../Components/ReviewList';
+
+
 
 const ListingDetails = () => {
   const mapContainer = useRef(null);
 
-  const onClick = () => {
-    toast.error("You are not the Owner of this listing");
-  };
-
   const location = useLocation();
   const { state } = location;
-  const { price, description, location: loc, image, title, country, latitude, longitude } = state || {};
+  const { price, description, location: loc, image, title, country, geometry  } = state || {};
+
+  const defaultCoordinates = [-73.935242, 40.730610];
+  const coordinates = geometry?.coordinates?.length === 2 ? geometry.coordinates : defaultCoordinates;
+
+
+
+
+  const onClick = () => {
+    toast.success("You Can Contact To Our Mentor For More Extra Details");
+  };
 
   useEffect(() => { 
+
+    // if (!coordinates || coordinates.length !== 2) {
+    //   console.error("Invalid coordinates", coordinates);
+    //   return;
+    // }
     mapboxgl.accessToken = 'pk.eyJ1IjoidGhlY2xhc3Nyb29tIiwiYSI6ImNscnJ6dXo4ajAxYTMya3A0NG55cW1pMjYifQ.oLJ-X878O9NJFYwI_rwiLQ';
 
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [longitude || 77.1025, latitude || 28.7041], // Default to Delhi if no coordinates provided
+      center: coordinates, 
       zoom: 9
     });
 
-    // Add a marker at the listing's location
-    if (latitude && longitude) {
-      new mapboxgl.Marker()
-        .setLngLat([longitude, latitude])
+    new mapboxgl.Marker({color:"red"})
+        .setLngLat(coordinates)
         .addTo(map);
-    }
+   
+     // add pop up
+    new mapboxgl.Popup()
+    .setLngLat(coordinates)
+    .setHTML(`<h3>${title}</h3><p>${description}</p>`)
+    .addTo(map);
 
-    return () => map.remove(); // Cleanup on unmount
-  }, [latitude, longitude]);
+
+    return () => map.remove();
+  }, [coordinates,title, description]
+);
 
   return (
     <>
@@ -58,25 +80,18 @@ const ListingDetails = () => {
 
               {/* Buttons */}
               <div className="flex justify-start gap-6 mt-6">
-                <NavLink to="/editListing">
+                <NavLink to="/mentorDetails" onClick={onClick} >
                   <button className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300">
-                    Edit
+                    Want Some More Info
                   </button>
                 </NavLink>
 
-                <button 
-                  onClick={onClick} 
-                  className="px-6 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition duration-300"
-                >
-                  Delete
-                </button>
-
                 <NavLink 
-                  to="/book"
-                  state={{ price, title, loc, country, image, latitude, longitude }} // Pass location details
+                  to="/checkout"
+                  state={{ price, title, loc, country, image }} // Pass location details
                 >
-                  <button className="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition duration-300">
-                    Book
+                  <button className="px-6 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition duration-300">
+                     Check it Out
                   </button>
                 </NavLink>
               </div>
@@ -92,6 +107,11 @@ const ListingDetails = () => {
         <h1 className="text-3xl font-semibold mb-4">You will be there</h1>
         <div ref={mapContainer} className="w-full h-96 mt-3 rounded-lg shadow-md"></div>
       </div>
+
+      <ReviewForm listingId={state._id} />
+      <ReviewList listingId={state._id} />
+
+      <MeetYourMentor/>
     </>
   );
 };

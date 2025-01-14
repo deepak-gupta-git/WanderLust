@@ -13,7 +13,7 @@ const Home = async (req, res ) => {
 }
 
 // signUp
-const signUp = async (req, res) => {
+const signUp = async (req, res,next) => {
     try {
         const {email, password , username} = req.body;
         // const userExist = await User.findOne ({email});
@@ -36,7 +36,8 @@ const signUp = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-}
+    next(error);
+};
 
 
 // login

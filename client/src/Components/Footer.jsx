@@ -19,6 +19,9 @@ const Footer = () => {
           <div className="private"> &copy; WanderLust Private Limited</div>
           <div className="info-links">
             <a href="#">PrivacyTerm</a>
+            <br />
+            <a href='https://www.linkedin.com/in/deepak--gupta/' target="_blank" rel="n" className='underline'>Made By Deepak Gupta</a>
+            <p>Email: deepakgupta6707@gmail.com</p>
           </div>
         </div>
       </footer>

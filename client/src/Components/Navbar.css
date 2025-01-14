@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     /* background-color: #fe424d; */
+    scroll-behavior: smooth;
 }
 
 
@@ -22,7 +23,9 @@
 .logo_sections{
     display: flex;
     align-items: center;
+    font-weight: 500;
 }
+
 
 .logo{
     /* color: #fe424d; */

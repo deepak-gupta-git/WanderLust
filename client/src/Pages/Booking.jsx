@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Razorpay from 'razorpay';
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import { useAuth } from "../Store/authStore";
+
+
 
 
 const Booking = () => {
+   const { isLoggedIn } = useAuth();
   const location = useLocation();
   const { price } = location.state || {}; 
 
@@ -13,23 +18,34 @@ const Booking = () => {
     return amount + amount * gst; 
   };
 
+  
+
   const totalAmount = price ? calculateTotal(price) : 0; 
+
+    const navigate = useNavigate();
+
+    
 
   const paymentHandler = async (event) => {
     event.preventDefault();
+
+    if (!isLoggedIn) {
+      toast.error("You need to log in to proceed with the booking.");
+      return;
+    }
 
     const amount = totalAmount * 100; 
     const currency = "INR";
     const receiptId = "1234567890";
 
     try {
-      const response = await fetch("https://wander-lust-server.vercel.app/book", {
+      const response = await fetch("http://localhost:3000/book", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          amount: amount,
+          amount,
           currency,
           receipt: receiptId,
         }),
@@ -42,13 +58,14 @@ const Booking = () => {
         key: "", // Razorpay key
         amount, // Amount in paise
         currency,
-        name: "User XYZ",
+        name: "Deepak Gupta",
         description: "Test Transaction",
         image: "https://i.ibb.co/5Y3m33n/test.png",
         order_id: order.id, // Order ID from your backend
         handler: async function (response) {
-          console.log(response);
-          // Here you can send the order details to your backend
+          console.log("Payment Successful: ", response);
+          toast.success("Booking Confirmed Successfully!");
+          navigate("/"); 
         },
         prefill: {
           name: "Deepak Gupta",
@@ -80,10 +97,11 @@ const Booking = () => {
     }
   };
 
+ 
 
   return (
     <>
-      <div className="max-w-4xl mx-auto px-4 py-8 mt-[4rem]">
+      <div className="max-w-4xl mx-auto px-4 py-8  bg-white p-6 rounded-lg shadow-lg " id="booking">
         <h1 className="text-3xl font-semibold text-center mb-8">Enter Your Details Here</h1>
 
         <div className="flex flex-col-reverse md:flex-row gap-8">
@@ -104,12 +122,18 @@ const Booking = () => {
               <p>₹{totalAmount.toFixed(2)}</p> {/* Display total amount */}
             </div>
 
+            {
+              isLoggedIn 
+            }
             <button
               onClick={paymentHandler}
               type="submit"
               className="btn bg-red-500 p-2 text-white w-full mt-4 rounded-md hover:bg-red-500"
             >
-              PROCEED TO BOOK
+
+             PROCEED TO BOOK
+      
+              
             </button>
           </div>
 
