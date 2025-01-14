@@ -39,7 +39,7 @@ const Booking = () => {
     const receiptId = "1234567890";
 
     try {
-      const response = await fetch("http://localhost:3000/book", {
+      const response = await fetch("https://wander-lust-server.vercel.app/book", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
