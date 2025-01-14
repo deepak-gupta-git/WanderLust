@@ -12,7 +12,7 @@ const Filters = () => {
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/listings");
+        const response = await fetch("https://wander-lust-server.vercel.app/api/listings");
         if (response.ok) {
           const data = await response.json();
           setAllListings(data);
