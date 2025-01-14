@@ -14,7 +14,7 @@ const NewListings = (
   country:""
   });
 
-  const URL = "http://localhost:3000";
+  const URL = "https://wander-lust-server.vercel.app";
 
   const handleInput = (e) => {
     console.log(e);
