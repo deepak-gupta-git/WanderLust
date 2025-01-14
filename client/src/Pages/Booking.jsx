@@ -12,7 +12,7 @@ const Booking = () => {
   const location = useLocation();
   const { price } = location.state || {}; 
 
- 
+
   const calculateTotal = (amount) => {
     const gst = 0.18; 
     return amount + amount * gst; 
@@ -55,7 +55,7 @@ const Booking = () => {
       console.log("order", order);
 
       const options = {
-        key: "", // Razorpay key
+        key: "rzp_test_UbEMBNtpJ23kNG", // Razorpay key
         amount, // Amount in paise
         currency,
         name: "Deepak Gupta",

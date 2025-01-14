@@ -12,6 +12,15 @@ import ReviewList from '../Components/ReviewList';
 const ListingDetails = () => {
   const mapContainer = useRef(null);
 
+<<<<<<< HEAD
+=======
+  const onClick = () => {
+    toast.error("You are not the Owner of this listing");
+  };
+
+ 
+
+>>>>>>> 5e422fe8cc7f5fe14ada383c5ccf7dffd526363d
   const location = useLocation();
   const { state } = location;
   const { price, description, location: loc, image, title, country, geometry  } = state || {};
@@ -86,12 +95,28 @@ const ListingDetails = () => {
                   </button>
                 </NavLink>
 
+<<<<<<< HEAD
+=======
+                <button 
+                  onClick={onClick}
+                  className="px-6 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition duration-300" >
+                  Delete
+                </button>
+>>>>>>> 5e422fe8cc7f5fe14ada383c5ccf7dffd526363d
                 <NavLink 
                   to="/checkout"
                   state={{ price, title, loc, country, image }} // Pass location details
                 >
+<<<<<<< HEAD
                   <button className="px-6 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 transition duration-300">
                      Check it Out
+=======
+                  <button 
+   
+                    className="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition duration-300">
+                    Book
+                     
+>>>>>>> 5e422fe8cc7f5fe14ada383c5ccf7dffd526363d
                   </button>
                 </NavLink>
               </div>
